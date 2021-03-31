@@ -1,25 +1,30 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
-// import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Rating from "@material-ui/lab/Rating";
+import { useHistory, Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
+  cardInfo: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  ratingnumber: {
+    marginLeft: "5px",
+  },
   root: {
-    maxWidth: 345,
+    // maxWidth: 355,
+    height: "30%",
+    width: "31%",
+    // borderWidth: "2px",
+    // borderColor: "blue",
   },
   media: {
     height: 0,
@@ -40,49 +45,62 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  const history = useHistory();
+  //   <button
+  //   onClick={() => history.push(`/career/job/${jobItem.id}`)}
+  //   type="button"
+  // >
+  // {
+  //   pathname: '/template',
+  //   search: '?query=abc',
+  //   state: { detail: response.data }
+  // }
   return (
-    <Card className={classes.root}>
+    // <Link >
+    <Card
+      // onClick={() => history.push(`/detail/${props.id}`)}
+      onClick={() =>
+        history.push({
+          pathname: `/detail/${props.id}`,
+          // search: '?query=abc',
+          state: { detail: props },
+        })
+      }
+      className={classes.root}
+    >
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }
-        action={
-          <>
+        title={props.name}
+        subheader={
+          <div className={classes.cardInfo}>
             <Rating
               name="half-rating-read"
-              defaultValue={2.7}
-              precision={0.1}
+              defaultValue={props.rating.toString()}
+              precision={0.5}
               readOnly
               size="small"
             />
-            <p>6</p>
-          </>
+            <p className={classes.ratingnumber}>{props.ratingNumber}</p>
+          </div>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image="https://www.deutsches-krankenhaus-verzeichnis.de/app/file/image/show/039d2d2d7948ef77_d08ce7f2-cdce-449d-a8fb-f11ed90eb888.png"
         title="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {props.address}
         </Typography>
       </CardContent>
     </Card>
+    // </Link>
   );
 }
