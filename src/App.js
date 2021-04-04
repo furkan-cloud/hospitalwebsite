@@ -1,22 +1,26 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Detail from "./pages/Detail/Detail";
-import Home from "./pages/Home/Home";
-import Header from "./components/header/index";
-import Footer from "./components/footer";
-import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";
+import './App.css';
+//import Detail from './pages/detail/Detail.js';
+import Home from './pages/home/Home.js';
+import About from './pages/about/About.js';
+import Contact from './pages/contact/Contact.js';
+import Header from './components/header/index.js';
+import Footer from './components/footer/index.js';
+import MediaCard from './pages/detail/Detail.js';
+
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 function App() {
+
   return (
     <Router>
       <Header />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/detail/:id" component={Detail} />
+        <Route path="/" component={Home} exact />
+        <Route path="/about" component={About} exact />
+        <Route path="/contact" component={Contact} exact />
+        <Route path="/detail/:id" component={MediaCard} exact />
       </Switch>
       <Footer />
     </Router>
