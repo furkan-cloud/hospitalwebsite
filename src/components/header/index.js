@@ -1,8 +1,17 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, {useEffect} from 'react'
+import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/logo2.png';
+import "./style.css";
+
+
 
 const Header = () => {
+    const history = useHistory();
+    useEffect(() => {
+        
+        history.push("/");
+        
+    }, [])
     return (
         <div id="header_container">
             <div id="logo">
@@ -10,9 +19,10 @@ const Header = () => {
             </div>
             <nav>
                 <ul>
-                    <li><a href="/">HOME</a></li>
-                    <li><a href="/about">ABOUT</a></li>
-                    <li><a href="/contact">CONTACT</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
+                    
                 </ul>
             </nav>
         </div>

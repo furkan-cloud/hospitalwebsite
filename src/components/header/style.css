@@ -1,0 +1,23 @@
+#header_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FCE79A;
+    border-bottom: 3px solid #5CC6C9;
+  }
+  
+  #header_container li{
+    display: inline;
+    padding: 0 20px;
+  }
+  
+  #header_container a{
+    color: #5CC6C9;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #header_container a:hover{
+    font-size: 17px;
+    color: #0A3966;
+  }
