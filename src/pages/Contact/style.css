@@ -1,0 +1,10 @@
+#contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+h1{
+    color: #303F9F;
+}
