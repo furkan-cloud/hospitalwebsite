@@ -1,60 +1,109 @@
 import React, { useState } from "react";
-import { TextField, Button, MenuItem } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
+
+
 
 const cities = [
   {
-    value: "Berlin",
-    label: "Berlin",
+    value: 'Alfeld',
+    label: 'Alfeld'
   },
   {
-    value: "Hannover",
-    label: "Hannover",
+    value: 'Braunschweig',
+    label: 'Braunschweig'
   },
   {
-    value: "Gottingen",
-    label: "Gottingen",
+    value: 'Burgwedel',
+    label: 'Burgwedel'
   },
+  {
+    value: 'Coppenbrügge',
+    label: 'Coppenbrügge'
+  },
+  {
+    value: 'Göttingen',
+    label: 'Göttingen'
+  },
+  {
+    value: 'Hameln',
+    label: 'Hameln'
+  },
+  {
+    value: 'Hannover',
+    label: 'Hannover'
+  },
+  {
+    value: 'Hildesheim',
+    label: 'Hildesheim'
+  },
+  {
+    value: 'Lehrte',
+    label: 'Lehrte'
+  },
+  {
+    value: 'Rosdorf',
+    label: 'Rosdorf'
+  }
 ];
 
 const useStyles = makeStyles((theme) => ({
-  input: {
-    width: "150px",
-    height: "56px",
-    marginRight: "10px",
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+  buttons: {
+    width: '200px',
+    height: '57px',
+    marginRight : '10px'
+  },
+  searchbutton: {
+    width: '200px',
+    height: '57px',
+    marginRight : '10px',
+    backgroundColor: '#5CC6C9',
+    '&:hover': {
+      backgroundColor: 'green',
+      borderColor: '#0062cc',
+      boxShadow: 'none',
+    },
+  },
+  sortbutton: {
+    width: '105px',
+    height: '57px',
+    marginRight : '10px',
+    backgroundColor: 'lightgoldenrodyellow',
+    borderColor: '#0062cc',
   },
 }));
 
-const Search = (props) => {
+  const Search = (props) => {
+  
   const classes = useStyles();
-  const [searchText, setSearchText] = useState("");
   const [city, setCity] = React.useState();
-  console.log("ss", searchText);
 
   const handleChange = (event) => {
     setCity(event.target.value);
   };
 
+  const [searchText, setSearchText] = useState("");
+  console.log(searchText);
   return (
     <div>
-      <TextField
-        onChange={(event) => {
-          setSearchText(event.target.value);
-        }}
-        id="outlined-basic"
-        label="Klinikname"
-        variant="outlined"
-        type="text"
-        className={classes.input}
-      />
+      <TextField className={classes.buttons} id="outlined-basic" label="Clinic name" variant="outlined" onChange={(event) => setSearchText(event.target.value)} />
+
       <TextField
         id="outlined-select-currency"
         select
-        label="Select City"
+        label="Select city"
         value={city}
         onChange={handleChange}
         variant="outlined"
-        className={classes.input}
+        className={classes.buttons}
       >
         {cities.map((option) => (
           <MenuItem key={option.value} value={option.value}>
@@ -62,64 +111,14 @@ const Search = (props) => {
           </MenuItem>
         ))}
       </TextField>
-      <Button
-        type="submit"
-        id="btn-suche"
-        variant="outlined"
-        className={classes.input}
-        onClick={() => props.searchedText(searchText)}
-      >
-        Search
-      </Button>
 
-      <Button
-        className={classes.input}
-        type="submit"
-        id="btn-sort"
-        variant="outlined"
-        onClick={null}
-      >
-        Sort
-      </Button>
+      <Button className={classes.searchbutton} variant="outlined" type="submit" id="btn-suche" onClick={() => props.searchedText(searchText)}>Search</Button>
+
+      <button className={classes.sortbutton} id="btn-sort" onClick={()=>props.sorted()}>Sort by Rating</button>
     </div>
+
   );
+
 };
 
 export default Search;
-
-{
-  /* <input
-        id="search"
-        name="search"
-        type="text"
-        placeholder="Klinikname"
-        onChange={(event) => {
-          setSearchText(event.target.value);
-        }}
-      /> */
-}
-
-{
-  /* <button type="submit" id="btn-show-all" onClick={null}>
-        See All
-      </button>
-      <button type="submit" id="btn-sort" onClick={null}>
-        Sort
-      </button> */
-}
-
-{
-  /* <button
-        type="submit"
-        id="btn-suche"
-        onClick={() => props.searchedText(searchText)}
-      >
-        Suche
-      </button> */
-}
-
-{
-  /* <Button type="submit" id="btn-show-all" variant="outlined" onClick={null}>
-        See All
-      </Button> */
-}
