@@ -1,0 +1,25 @@
+#about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2, p{
+    color: #0A3966;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    
+}
+
+.caption {
+    display: block;
+    color: #5DC7CB;
+    margin-top: 10px;
+    font-weight: bold;
+    
+}
