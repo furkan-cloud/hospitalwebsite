@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   large: {
-    width: theme.spacing(20),
-    height: theme.spacing(20),
+    width: "12vw",
+    height: "12vw",
   },
 }));
 
